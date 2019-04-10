@@ -203,7 +203,7 @@ function preprocess(imgData) {
             .resizeNearestNeighbor([28, 28])
             .mean(2)
             .toFloat()
-            .reshape([1, 28, 28]);
+            .reshape([1, 28, 28, 1]);
         return tensor.div(255.0);
     })
 }
@@ -219,7 +219,7 @@ async function start(cur_mode) {
     model = await tf.loadLayersModel('model/model.json')
 
     //warm up 
-    model.predict(tf.zeros([1, 28, 28]))
+    model.predict(tf.zeros([1, 28, 28, 1]))
 
     //allow drawing on the canvas 
     allowDrawing()
